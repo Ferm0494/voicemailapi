@@ -2,14 +2,15 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const fetch = require('node-fetch')
-const cors = require('cors')
 const {CREDS,headers}= require('./secrets')
 const port = process.env.PORT || 5000;
 
+
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors())
-app.options('*', cors());
+
+
 
 app.get('/messages', async(req, res) => {
     // Default VM_BOX_ID 
