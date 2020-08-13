@@ -1,26 +1,45 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Spinner from './components/spinner'
+import {connect} from 'react-redux'
+import {loading, done_loading} from './store/actions/appActions'
+import {fetch_voice_mails} from './store/actions/voiceMailsActions'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends React.Component {
+  
+  componentDidMount(){
+    this.props.fetchVoiceMails()
+
+  }
+
+
+  render(){
+    return(
+        <Spinner/>
+    )
+  }
 }
 
-export default App;
+const mapStateToProps = (state)=> {
+  return{
+    app: state.app.isLoading,
+    voiceMails: state.voiceMails
+  }
+};
+
+const mapDispatchToProps = (dispatch)=>{
+  return {
+    loading: ()=>{
+        dispatch(loading)
+    },
+    doneLoading: ()=>{
+      dispatch(done_loading)
+    },
+    fetchVoiceMails: ()=>{
+        dispatch(fetch_voice_mails)
+    }
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(App);
