@@ -32,7 +32,7 @@ class TableComponent extends React.Component {
                                
                            }} >
                             {mail.folder}
-                            <MenuComponent opts={options.filter(x=> x !== mail.folder)} id="simple-menu" store={store} call_id={mail.call_id}/>
+                            <MenuComponent opts={options.filter(x=> x !== mail.folder)} id="simple-menu" store={store} call_id={mail.media_id}/>
                            </Button>
                            
                            </TableCell> 

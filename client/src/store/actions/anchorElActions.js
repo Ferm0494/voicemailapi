@@ -6,7 +6,7 @@ const show_anchor=(event)=>{
 
      return {type: SHOW_ANCHOR, payload: event}
 }
-const hide_anchor = async(folder,id)=>{
+const hide_anchor = async(folder,message)=>{
 
     
     let response = await fetch('/messages',{
@@ -14,7 +14,7 @@ const hide_anchor = async(folder,id)=>{
         headers:{
             'Content-Type':'application/json',
         },
-        body: JSON.stringify({folder})
+        body: JSON.stringify({folder,message})
     })
 
     const body = await response.text();
