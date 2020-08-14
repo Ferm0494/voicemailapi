@@ -1,13 +1,15 @@
 import {createStore,combineReducers,applyMiddleware,compose} from 'redux'
 import appReducer from './reducers/appReducer'
 import voiceMailsReducer from './reducers/voiceMailsReducer'
+import anchorElReducer from './reducers/anchorEl'
 import thunk from 'redux-thunk'
 
 
 const middleWare = [thunk]
 
-const AllReducers = combineReducers({app: appReducer, voiceMails: voiceMailsReducer})
+const AllReducers = combineReducers({app: appReducer, voiceMails: voiceMailsReducer,anchorEl: anchorElReducer})
 const InitialStates = {
+        anchorEl:{anchorEl: null} ,
         app: {isLoading: true},
         voiceMails: []
 }

@@ -5,7 +5,7 @@ import TableComponent from './components/tableComponent'
 import {connect} from 'react-redux'
 import {loading, done_loading} from './store/actions/appActions'
 import {fetch_voice_mails} from './store/actions/voiceMailsActions'
-
+import store from './store/index'
 
 
 class App extends React.Component {
@@ -18,7 +18,7 @@ class App extends React.Component {
   render(){
     
     return(
-      this.props.app ? <Spinner/> : <TableComponent mails={this.props.voiceMails} />
+      this.props.app ? <Spinner/> : <TableComponent store={store}  mails={this.props.voiceMails} />
     )
   }
 }
