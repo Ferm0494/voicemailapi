@@ -82,7 +82,7 @@ class SimpleMenu extends React.Component{
 
 }
 
-const mapStateToProps2 = (state)=> {
+const mapStateToProps2 = (state)=> {    
     return state
   };
  
@@ -92,7 +92,8 @@ const mapStateToProps2 = (state)=> {
          hide_menu: (folder,id,box)=>{
             hide_anchor(folder,id,box).then(action=>{
                 dispatch(action)
-                mapDispatchToProps(dispatch).fetchVoiceMails(dispatch,box)
+                console.log("BOX",box)
+                mapDispatchToProps(dispatch).fetchVoiceMails(box)
             })
          },
 
