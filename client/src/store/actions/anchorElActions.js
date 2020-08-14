@@ -8,7 +8,7 @@ const show_anchor=(event)=>{
 }
 const hide_anchor = async(folder,message)=>{
 
-    console.log("Why im getting executed?",message)
+    
     let response = await fetch('/messages',{
         method: "PATCH",
         headers:{
@@ -16,12 +16,11 @@ const hide_anchor = async(folder,message)=>{
         },
         body: JSON.stringify({folder,message})
     })
-
-    const body = await response.text();
-    console.log(body)
-
+    
    return  {type: HIDE_ANCHOR, payload:null}
 }
+
+const hide_fast_anchor = {type: HIDE_ANCHOR, payload:null}
 
 
 
@@ -29,5 +28,6 @@ export{
     SHOW_ANCHOR,
     HIDE_ANCHOR,
     show_anchor,
-    hide_anchor
+    hide_anchor,
+    hide_fast_anchor
 }

@@ -1,7 +1,7 @@
 import React from "react"
 import {Menu, MenuItem, withStyles} from "@material-ui/core"
 import { connect } from "react-redux";
-import {hide_anchor} from '../store/actions/anchorElActions'
+import {hide_anchor,hide_fast_anchor} from '../store/actions/anchorElActions'
 import {mapDispatchToProps} from '../App'
 
 const styles = (theme) => ({
@@ -17,8 +17,16 @@ class SimpleMenu extends React.Component{
 
 
     handleClose(folder){
-       this.props.loading()
-       this.props.hide_menu(folder,this.props.call_id)
+       
+        if(typeof folder === "string" ){
+            
+            this.props.loading()
+            this.props.hide_menu(folder,this.props.call_id)
+        }else{
+        
+            this.props.hide_not_synced_menu()
+
+        }
           
         
     }
@@ -58,6 +66,9 @@ const mapStateToProps2 = (state)=> {
                 dispatch(action)
                 mapDispatchToProps(dispatch).fetchVoiceMails()
             })
+         },
+         hide_not_synced_menu:()=>{
+             dispatch(hide_fast_anchor)
          }
         }
    return Object.assign(obj,mapDispatchToProps(dispatch))
