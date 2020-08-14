@@ -19,7 +19,6 @@ class SimpleMenu extends React.Component{
     handleClose(folder){
        
         if(typeof folder === "string" ){
-            
             this.props.loading()
             this.props.hide_menu(folder,this.props.call_id)
         }else{

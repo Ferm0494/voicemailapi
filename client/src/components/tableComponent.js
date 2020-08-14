@@ -5,13 +5,13 @@ import store from '../store/index'
 import { connect } from 'react-redux';
 import {show_anchor} from '../store/actions/anchorElActions'
 
+
 const options = ['new','saved','deleted']
 class TableComponent extends React.Component {
 
   
 
     handeClick(event){
-        console.log("The event",event)
         this.props.show_menu(event.currentTarget)
     }
 
@@ -81,3 +81,6 @@ const mapStateToProps = (state)=> {
 
 
 export default connect(mapStateToProps,mapDispatchToProps)(TableComponent)
+export{
+    mapDispatchToProps,
+}
