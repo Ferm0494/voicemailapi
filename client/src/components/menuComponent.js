@@ -56,7 +56,7 @@ const mapStateToProps2 = (state)=> {
             hide_anchor(folder,id).then(action=>{
                 
                 dispatch(action)
-                mapDispatchToProps(dispatch).doneLoading()
+                mapDispatchToProps(dispatch).fetchVoiceMails()
             })
          }
         }
