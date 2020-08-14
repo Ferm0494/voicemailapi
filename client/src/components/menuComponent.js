@@ -2,6 +2,7 @@ import React from "react"
 import {Menu, MenuItem, withStyles} from "@material-ui/core"
 import { connect } from "react-redux";
 import {hide_anchor} from '../store/actions/anchorElActions'
+import {mapDispatchToProps} from '../App'
 
 const styles = (theme) => ({
     mt2: {
@@ -15,12 +16,12 @@ class SimpleMenu extends React.Component{
     }
 
 
-    handleClose(){
+    handleClose(folder){
+       this.props.hide_menu(folder,this.props.call_id)
         
     }
 
     render(){
-        console.log(this.props)
         let menuItems = this.props.opts.map(item=>{
                 return(
                     <MenuItem key={item} onClick={(e)=>{
@@ -40,21 +41,27 @@ class SimpleMenu extends React.Component{
 
 }
 
-const mapStateToProps = (state)=> {
+const mapStateToProps2 = (state)=> {
     return{
     anchorEl: state.anchorEl.anchorEl
     }
   };
  
- const mapDispatchToProps =(dispatch) =>{
-     return{
-         hide_menu: ()=>{
-                dispatch(hide_anchor)
+ const mapDispatchToProps2 =(dispatch) =>{
+   
+     let obj = {
+         hide_menu: (folder,id)=>{
+            hide_anchor(folder,id).then(action=>{
+                dispatch(action)
+            })
          }
-     }
+        }
+   return Object.assign(obj,mapDispatchToProps(dispatch))
+        
+    
  } 
   
   
   
 
-export default connect(mapStateToProps,mapDispatchToProps)(withStyles(styles)(SimpleMenu));
+export default connect(mapStateToProps2,mapDispatchToProps2)(withStyles(styles)(SimpleMenu));

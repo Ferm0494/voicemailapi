@@ -5,7 +5,10 @@ const show_anchor=(event)=>{
 
      return {type: SHOW_ANCHOR, payload: event}
 }
-const hide_anchor = {type: HIDE_ANCHOR, payload:null}
+const hide_anchor = async(folder,id)=>{
+
+   return  {type: HIDE_ANCHOR, payload:null}
+}
 
 
 
