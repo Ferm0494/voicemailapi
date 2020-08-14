@@ -2,18 +2,21 @@ import React from "react"
 import {Button} from '@material-ui/core'
 import MenuComponent from './menuComponent'
 import store from '../store/index'
-import {mapDispatchToProps} from './tableComponent'
 import { connect } from "react-redux"
+import {mapDispatchToProps} from "../App"
 
 
 class VmBoxes extends React.Component{
+
     constructor(props){
         super(props)
         this.handleClick = this.handleClick.bind(this)
+       
     }
 
     handleClick(event){
-    this.props.show_menu(event.current_target)
+    
+    this.props.show_menu(event)
     
     }
 
@@ -21,24 +24,26 @@ class VmBoxes extends React.Component{
         return(
             <div>
             <Button aria-controls="simple-menu" aria-haspopup="true" onClick={(e)=>{
-                this.handleClick(e)
+                this.handleClick(e.currentTarget)
             }}>
             See my VmBoxes
             
             </Button>
 
-            <MenuComponent id="simple-menu" opts={this.props.vmboxes} store={store}/>
+            <MenuComponent id="simple-menu" store={store}/>
             </div>
         )
     }
 
 }
-const mapStateToProps= (state)=>{
-    return{
-            vmboxes: state.vmboxes
-      }
+
+const mapStateToProps2=(state)=>{
+    return state
+}
+const mapDispatchToProps2= (dispatch)=>{
+    return mapDispatchToProps(dispatch)
 }
 
 
 
-export default connect(mapStateToProps)(VmBoxes)
+export default connect(mapStateToProps2,mapDispatchToProps2)(VmBoxes)

@@ -17,30 +17,47 @@ class SimpleMenu extends React.Component{
 
 
     handleClose(folder){
-       
-        if(typeof folder === "string" ){
+        
+        if(typeof folder === "string" && this.props.table){
             this.props.loading()
             this.props.hide_menu(folder,this.props.call_id)
+        }else if(typeof folder === "string"){
+               this.props.fetchVoiceMails(folder)
         }else{
-        
             this.props.hide_not_synced_menu()
-
         }
-          
         
     }
 
     render(){
-        let menuItems = this.props.opts.map(item=>{
+        
+        let menuItems = this.props.opts === undefined ? this.props.vmBoxes.vmBoxes : this.props.opts
+        console.log(this.props)
+        if(this.props.opts === undefined){
+            menuItems = this.props.vmBoxes.vmBoxes.map(item=>{
+                return(
+                    <MenuItem key={item.id} onClick={(e)=>{
+                        this.handleClose(item.id)
+                    }} >{item.name}</MenuItem>
+                )
+        })
+
+        }else{
+              menuItems = this.props.opts.map(item=>{
                 return(
                     <MenuItem key={item} onClick={(e)=>{
                         this.handleClose(item)
                     }} >{item}</MenuItem>
                 )
         })
+        }
+           
+       
+
+
         return(
-        <Menu className={this.props.classes.mt2} id={this.props.id} anchorEl={this.props.anchorEl}
-            keepMounted open={Boolean(this.props.anchorEl)} onClose={this.handleClose}
+        <Menu className={this.props.classes.mt2} id={this.props.id} anchorEl={this.props.anchorEl.anchorEl}
+            keepMounted open={Boolean(this.props.anchorEl.anchorEl)} onClose={this.handleClose}
         >
     
             {menuItems}
@@ -51,9 +68,7 @@ class SimpleMenu extends React.Component{
 }
 
 const mapStateToProps2 = (state)=> {
-    return{
-    anchorEl: state.anchorEl.anchorEl
-    }
+    return state
   };
  
  const mapDispatchToProps2 =(dispatch) =>{
@@ -66,6 +81,7 @@ const mapStateToProps2 = (state)=> {
                 mapDispatchToProps(dispatch).fetchVoiceMails()
             })
          },
+
          hide_not_synced_menu:()=>{
              dispatch(hide_fast_anchor)
          }

@@ -3,7 +3,8 @@ import {Table,TableBody,TableCell,TableContainer,TableHead,TableRow,MenuItem,Men
 import MenuComponent from './menuComponent'
 import store from '../store/index'
 import { connect } from 'react-redux';
-import {show_anchor} from '../store/actions/anchorElActions'
+import {mapDispatchToProps} from '../App'
+
 
 
 const options = ['new','saved','deleted']
@@ -32,7 +33,7 @@ class TableComponent extends React.Component {
                                
                            }} >
                             {mail.folder}
-                            <MenuComponent opts={options.filter(x=> x !== mail.folder)} id="simple-menu" store={store} call_id={mail.media_id}/>
+                            <MenuComponent opts={options.filter(x=> x !== mail.folder)} id="simple-menu" store={store} call_id={mail.media_id} table={true}/>
                            </Button>
                            
                            </TableCell> 
@@ -69,18 +70,11 @@ class TableComponent extends React.Component {
 const mapStateToProps = (state)=> {
     return state
   };
-  
-  const mapDispatchToProps = (dispatch)=>{
-    return {
 
-    show_menu: (event)=>{
-        dispatch(show_anchor(event))
-    },
-    }
+ const mapDispatchToProps2=(dispatch)=>{
+      return mapDispatchToProps(dispatch)
   }
+  
 
 
-export default connect(mapStateToProps,mapDispatchToProps)(TableComponent)
-export{
-    mapDispatchToProps,
-}
+export default connect(mapStateToProps,mapDispatchToProps2)(TableComponent)
