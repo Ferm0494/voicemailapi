@@ -31,7 +31,6 @@ class TableComponent extends React.Component {
 
                            <Button aria-controls="simple-menu" aria-haspopup="true" variant="contained" onClick={(e)=>{
                                this.handeClick(e)
-                               
                            }} >
                             {mail.folder}
                             <MenuComponent opts={options.filter(x=> x !== mail.folder)} id="simple-menu" store={store} call_id={mail.media_id} table={true}/>

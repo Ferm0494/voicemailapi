@@ -15,7 +15,6 @@ class VmBoxes extends React.Component{
     }
 
     handleClick(event){
-    
     this.props.show_menu(event)
     
     }

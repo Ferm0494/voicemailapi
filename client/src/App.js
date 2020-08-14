@@ -51,6 +51,7 @@ const mapDispatchToProps = (dispatch)=>{
     fetchVoiceMails: (id)=>{
         fetch_voice_mails(dispatch,id).then(action=>{
          dispatch(action)
+         dispatch(done_loading)
         })
     },
     fetchBoxes: ()=>{

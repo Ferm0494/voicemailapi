@@ -7,8 +7,6 @@ const fetch_voice_mails = async(dispatch,id)=>{
 
     const response = await fetch(`/${id}/messages`)
     const json = await response.json()
-    dispatch({type: OFF, payload: false})
-
     return {type:UPDATE_VOICES_MAILS, payload: json.data}
 
 }

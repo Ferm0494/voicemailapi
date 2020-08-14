@@ -22,7 +22,9 @@ class SimpleMenu extends React.Component{
             this.props.loading()
             this.props.hide_menu(folder,this.props.call_id)
         }else if(typeof folder === "string"){
-               this.props.fetchVoiceMails(folder)
+            this.props.hide_not_synced_menu()
+            this.props.loading()
+            this.props.fetchVoiceMails(folder)
         }else{
             this.props.hide_not_synced_menu()
         }
