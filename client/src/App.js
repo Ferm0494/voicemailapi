@@ -6,9 +6,10 @@ import {connect} from 'react-redux'
 import {loading, done_loading} from './store/actions/appActions'
 import {fetch_voice_mails} from './store/actions/voiceMailsActions'
 import {fetch_voice_boxes} from './store/actions/vmBoxexActions'
-import {show_anchor} from './store/actions/anchorElActions'
+import {show_anchor,show_anchorBoxes} from './store/actions/anchorElActions'
 import store from './store/index'
 import VmBoxes from './components/vmBoxes'
+import { hide_anchor2 } from './store/actions/anchorEl2Actions';
 
 
 class App extends React.Component {
@@ -19,7 +20,7 @@ class App extends React.Component {
 
 
   render(){
-    
+    console.log("APP",this.props)
     return(
       // this.props.app ? <Spinner/> : <TableComponent store={store}  mails={this.props.voiceMails} />
       this.props.app ? <Spinner/> : this.props.voiceMails.length === 0
@@ -33,6 +34,7 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state)=> {
+  console.log("SAA",state)
   return{
     app: state.app.isLoading,
     voiceMails: state.voiceMails,
@@ -59,7 +61,11 @@ const mapDispatchToProps = (dispatch)=>{
     },
     show_menu: (event)=>{
       dispatch(show_anchor(event))
-  },
+  },show_boxes:(event)=>{
+    dispatch(show_anchorBoxes(event))
+  },hide_boxes:()=>{
+    dispatch(hide_anchor2)
+  }
   }
 }
 

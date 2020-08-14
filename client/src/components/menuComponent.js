@@ -22,17 +22,18 @@ class SimpleMenu extends React.Component{
             this.props.loading()
             this.props.hide_menu(folder,this.props.call_id)
         }else if(typeof folder === "string"){
-            this.props.hide_not_synced_menu()
+            this.props.hide_boxes()
             this.props.loading()
             this.props.fetchVoiceMails(folder)
         }else{
+            this.props.hide_boxes()
             this.props.hide_not_synced_menu()
         }
         
     }
 
     render(){
-        
+        console.log(this.props)
         let menuItems = this.props.opts === undefined ? this.props.vmBoxes.vmBoxes : this.props.opts
         if(this.props.opts === undefined){
             menuItems = this.props.vmBoxes.vmBoxes.map(item=>{
@@ -41,7 +42,18 @@ class SimpleMenu extends React.Component{
                         this.handleClose(item.id)
                     }} >{item.name}</MenuItem>
                 )
+
+                
         })
+
+        return(
+            <Menu className={this.props.classes.mt2} id={this.props.id} anchorEl={this.props.anchorEl2.anchorEl}
+                keepMounted open={Boolean(this.props.anchorEl2.anchorEl)} onClose={this.handleClose}
+            >
+        
+                {menuItems}
+            </Menu>
+            )
 
         }else{
               menuItems = this.props.opts.map(item=>{
@@ -51,19 +63,20 @@ class SimpleMenu extends React.Component{
                     }} >{item}</MenuItem>
                 )
         })
+        return(
+            <Menu className={this.props.classes.mt2} id={this.props.id} anchorEl={this.props.anchorEl.anchorEl}
+                keepMounted open={Boolean(this.props.anchorEl.anchorEl)} onClose={this.handleClose}
+            >
+        
+                {menuItems}
+            </Menu>
+            )
         }
            
        
 
 
-        return(
-        <Menu className={this.props.classes.mt2} id={this.props.id} anchorEl={this.props.anchorEl.anchorEl}
-            keepMounted open={Boolean(this.props.anchorEl.anchorEl)} onClose={this.handleClose}
-        >
-    
-            {menuItems}
-        </Menu>
-        )
+        
     }
 
 }
@@ -77,7 +90,6 @@ const mapStateToProps2 = (state)=> {
      let obj = {
          hide_menu: (folder,id)=>{
             hide_anchor(folder,id).then(action=>{
-                
                 dispatch(action)
                 mapDispatchToProps(dispatch).fetchVoiceMails()
             })
