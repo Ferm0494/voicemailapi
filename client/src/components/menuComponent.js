@@ -32,7 +32,6 @@ class SimpleMenu extends React.Component{
     render(){
         
         let menuItems = this.props.opts === undefined ? this.props.vmBoxes.vmBoxes : this.props.opts
-        console.log(this.props)
         if(this.props.opts === undefined){
             menuItems = this.props.vmBoxes.vmBoxes.map(item=>{
                 return(

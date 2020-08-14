@@ -22,7 +22,12 @@ class App extends React.Component {
     
     return(
       // this.props.app ? <Spinner/> : <TableComponent store={store}  mails={this.props.voiceMails} />
-      this.props.app ? <Spinner/> : <VmBoxes/>
+      this.props.app ? <Spinner/> : this.props.voiceMails.length === 0
+      ? <VmBoxes/> : 
+      <div>
+          <VmBoxes/>
+          <TableComponent store={store}/>
+      </div>
     )
   }
 }
@@ -44,7 +49,9 @@ const mapDispatchToProps = (dispatch)=>{
       dispatch(done_loading)
     },
     fetchVoiceMails: (id)=>{
-        dispatch(fetch_voice_mails(dispatch,id))
+        fetch_voice_mails(dispatch,id).then(action=>{
+         dispatch(action)
+        })
     },
     fetchBoxes: ()=>{
       dispatch(fetch_voice_boxes)

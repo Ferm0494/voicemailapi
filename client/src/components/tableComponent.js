@@ -20,7 +20,8 @@ class TableComponent extends React.Component {
   
 
     render(){
-       const mails = this.props.mails.voiceMails
+        console.log(this.props)
+       const mails = this.props.voiceMails.voiceMails
 
     
         const components = mails.map(mail=>{
