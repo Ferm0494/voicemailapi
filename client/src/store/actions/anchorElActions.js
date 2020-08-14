@@ -11,8 +11,9 @@ const show_anchor=(event)=>{
 const show_anchorBoxes=(event)=>{
     return {type:SHOW_ANCHOR2, payload:event}
 }
-const hide_anchor = async(folder,message)=>{
-    let response = await fetch('/messages',{
+const hide_anchor = async(folder,message,id)=>{
+    console.log("FOLDER",id);
+    let response = await fetch(`${id}/messages`,{
         method: "PATCH",
         headers:{
             'Content-Type':'application/json',

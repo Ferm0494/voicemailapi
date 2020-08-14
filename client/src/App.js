@@ -10,6 +10,7 @@ import {show_anchor,show_anchorBoxes} from './store/actions/anchorElActions'
 import store from './store/index'
 import VmBoxes from './components/vmBoxes'
 import { hide_anchor2 } from './store/actions/anchorEl2Actions';
+import { update_current_vmbox } from './store/actions/currentVmBox';
 
 
 class App extends React.Component {
@@ -36,6 +37,7 @@ class App extends React.Component {
 const mapStateToProps = (state)=> {
   console.log("SAA",state)
   return{
+    current_box: state.currentVmBox.box,
     app: state.app.isLoading,
     voiceMails: state.voiceMails,
     anchorEl: state.anchorEl.anchorEl
@@ -46,6 +48,10 @@ const mapDispatchToProps = (dispatch)=>{
   return {
     loading: ()=>{
         dispatch(loading)
+    },
+
+    setCurrentBox:(id)=>{
+      dispatch(update_current_vmbox(id));
     },
     doneLoading: ()=>{
       dispatch(done_loading)

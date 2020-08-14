@@ -20,8 +20,10 @@ class SimpleMenu extends React.Component{
         
         if(typeof folder === "string" && this.props.table){
             this.props.loading()
-            this.props.hide_menu(folder,this.props.call_id)
+            this.props.hide_menu(folder,this.props.call_id,this.props.currentVmBox.box)
         }else if(typeof folder === "string"){
+
+            this.props.setCurrentBox(folder);
             this.props.hide_boxes()
             this.props.loading()
             this.props.fetchVoiceMails(folder)
@@ -33,7 +35,6 @@ class SimpleMenu extends React.Component{
     }
 
     render(){
-        console.log(this.props)
         let menuItems = this.props.opts === undefined ? this.props.vmBoxes.vmBoxes : this.props.opts
         if(this.props.opts === undefined){
             menuItems = this.props.vmBoxes.vmBoxes.map(item=>{
@@ -88,10 +89,10 @@ const mapStateToProps2 = (state)=> {
  const mapDispatchToProps2 =(dispatch) =>{
    
      let obj = {
-         hide_menu: (folder,id)=>{
-            hide_anchor(folder,id).then(action=>{
+         hide_menu: (folder,id,box)=>{
+            hide_anchor(folder,id,box).then(action=>{
                 dispatch(action)
-                mapDispatchToProps(dispatch).fetchVoiceMails()
+                mapDispatchToProps(dispatch).fetchVoiceMails(dispatch,box)
             })
          },
 
