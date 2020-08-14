@@ -8,7 +8,7 @@ const show_anchor=(event)=>{
 }
 const hide_anchor = async(folder,message)=>{
 
-    
+    console.log("Why im getting executed?",message)
     let response = await fetch('/messages',{
         method: "PATCH",
         headers:{

@@ -17,7 +17,9 @@ class SimpleMenu extends React.Component{
 
 
     handleClose(folder){
+       this.props.loading()
        this.props.hide_menu(folder,this.props.call_id)
+          
         
     }
 
@@ -52,7 +54,9 @@ const mapStateToProps2 = (state)=> {
      let obj = {
          hide_menu: (folder,id)=>{
             hide_anchor(folder,id).then(action=>{
+                
                 dispatch(action)
+                mapDispatchToProps(dispatch).doneLoading()
             })
          }
         }
