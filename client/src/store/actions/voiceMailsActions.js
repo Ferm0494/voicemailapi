@@ -1,5 +1,4 @@
 import fetch from "node-fetch"
-import {ON,OFF} from './appActions'
 
 const UPDATE_VOICES_MAILS = "UPDATE_VOICES_MAILS"
 

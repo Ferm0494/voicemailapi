@@ -1,7 +1,6 @@
 import React from 'react';
 import {Table,TableBody,TableCell,TableContainer,TableHead,TableRow,MenuItem,Menu,Button} from '@material-ui/core'
 import MenuComponent from './menuComponent'
-import store from '../store/index'
 import { connect } from 'react-redux';
 import {mapDispatchToProps} from '../App'
 
