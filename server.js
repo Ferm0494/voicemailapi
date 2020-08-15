@@ -14,7 +14,6 @@ app.get('/vmboxes',async(req,res)=>{
     let url = `${CREDS.serverURL}/accounts/${CREDS.accountID}/vmboxes/`
     let response = await fetch(url,{headers});
     let json = await response.json()
-    console.log(json.data)
     res.send(json)
 })
 
@@ -26,7 +25,6 @@ app.get('/:id/messages', async(req, res) => {
 
     let response = await fetch(url, {headers})
     let json = await response.json()
-    console.log(json)
     res.send(json)
 });
 app.patch('/:id/messages', async(req, res) => {
@@ -34,9 +32,6 @@ app.patch('/:id/messages', async(req, res) => {
     let vmBoxID = req.params.id
     let message = req.body.message
     let folder =req.body.folder
-
-    console.log("PATCHING!")
-    
     let url = `${CREDS.serverURL}/accounts/${CREDS.accountID}/vmboxes/${vmBoxID}/messages/${message}?folder=${folder}`
    
     let response= await fetch(url,{
@@ -44,7 +39,6 @@ app.patch('/:id/messages', async(req, res) => {
         method: 'POST',
     })
     let json = await response.json()
-    console.log(json)
     res.sendStatus(200)
 });
 
