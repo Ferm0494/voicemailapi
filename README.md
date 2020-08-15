@@ -1,7 +1,7 @@
 **VMBoxes API React/Redux/NodeJS**
 
 
-## Available Scripts	### PLEASE README
+**PLEASE README**
 
 
 In the project directory, you can run:	**IN ORDER TO RUN THE PROJECT THE SERVER AND THE CLIENT IS ON THE SAME DIRECTORY CLIENT(REACT) AND SERVER ROOT DIR AS SERVER.JS**
