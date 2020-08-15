@@ -17,16 +17,10 @@ class SimpleMenu extends React.Component{
 
 
     handleClose(folder){
-        
+        console.log(this.props);
         if(typeof folder === "string" && this.props.table){
             this.props.loading()
             this.props.hide_menu(folder,this.props.call_id,this.props.currentVmBox.box)
-        }else if(typeof folder === "string"){
-
-            this.props.setCurrentBox(folder);
-            this.props.hide_boxes()
-            this.props.loading()
-            this.props.fetchVoiceMails(folder)
         }else{
             this.props.hide_boxes()
             this.props.hide_not_synced_menu()
@@ -35,52 +29,32 @@ class SimpleMenu extends React.Component{
     }
 
     render(){
-        let menuItems = this.props.opts === undefined ? this.props.vmBoxes.vmBoxes : this.props.opts
-        if(this.props.opts === undefined){
-            menuItems = this.props.vmBoxes.vmBoxes.map(item=>{
-                return(
-                    <MenuItem key={item.id} onClick={(e)=>{
-                        this.handleClose(item.id)
-                    }} >{item.name}</MenuItem>
-                )
 
-                
-        })
-
+        let id= this.props.call_id
+       
+          let options = this.props.opts.map(item=>{
+               return(
+                   <MenuItem  key={id.concat(item)} onClick={(e)=>{
+                       this.handleClose(item)
+                   }}>
+                    {item}
+                   </MenuItem>
+               )
+           })
+    
+           
         return(
-            <Menu className={this.props.classes.mt2} id={this.props.id} anchorEl={this.props.anchorEl2.anchorEl}
-                keepMounted open={Boolean(this.props.anchorEl2.anchorEl)} onClose={this.handleClose}
+            <Menu className={this.props.classes.mt2} id={id} anchorEl={this.props.anchorEl.anchorEl[id]}
+                keepMounted open={Boolean(this.props.anchorEl.anchorEl[id])} onClose={this.handleClose}
             >
-        
-                {menuItems}
-            </Menu>
-            )
-
-        }else{
-              menuItems = this.props.opts.map(item=>{
-                return(
-                    <MenuItem key={item} onClick={(e)=>{
-                        this.handleClose(item)
-                    }} >{item}</MenuItem>
-                )
-        })
-        return(
-            <Menu className={this.props.classes.mt2} id={this.props.id} anchorEl={this.props.anchorEl.anchorEl}
-                keepMounted open={Boolean(this.props.anchorEl.anchorEl)} onClose={this.handleClose}
-            >
-        
-                {menuItems}
+                 {options}
+         
             </Menu>
             )
         }
-           
-       
-
-
-        
     }
 
-}
+
 
 const mapStateToProps2 = (state)=> {    
     return state
@@ -92,7 +66,6 @@ const mapStateToProps2 = (state)=> {
          hide_menu: (folder,id,box)=>{
             hide_anchor(folder,id,box).then(action=>{
                 dispatch(action)
-                console.log("BOX",box)
                 mapDispatchToProps(dispatch).fetchVoiceMails(box)
             })
          },

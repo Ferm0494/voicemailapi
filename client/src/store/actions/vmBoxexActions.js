@@ -6,7 +6,6 @@ const UPDATE_VOICE_BOXES = "UPDATE_VOICE_BOXES"
 const fetch_voice_boxes = async(dispatch)=>{
     const response= await fetch('/vmboxes')
     const json= await response.json()
-    console.log(json.data)
     dispatch({type:UPDATE_VOICE_BOXES, payload: json.data})
     dispatch({type: OFF, payload: false})
   

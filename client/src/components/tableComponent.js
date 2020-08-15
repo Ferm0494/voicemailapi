@@ -12,30 +12,26 @@ class TableComponent extends React.Component {
 
   
 
-    handeClick(event){
-        this.props.show_menu(event.currentTarget)
+    handeClick(event,mail){
+        this.props.show_menu(event.currentTarget,mail.media_id)
     }
 
-    
-  
-
     render(){
-        console.log(this.props)
        const mails = this.props.voiceMails.voiceMails
-
-    
+            
+      
         const components = mails.map(mail=>{
             return (
-                <TableRow key={mail.call_id}>
+                <TableRow key={mail.media_id}>
                        <TableCell align="center">
 
-                           <Button aria-controls="simple-menu" aria-haspopup="true" variant="contained" onClick={(e)=>{
-                               this.handeClick(e)
+                           <Button aria-controls={mail.media_id}  variant="contained" onClick={(e)=>{
+                               this.handeClick(e,mail)
                            }} >
                             {mail.folder}
-                            <MenuComponent opts={options.filter(x=> x !== mail.folder)} id="simple-menu" store={store} call_id={mail.media_id} table={true}/>
                            </Button>
-                           
+                           <MenuComponent opts={options.filter(x=> x !== mail.folder)}  call_id={mail.media_id} table={true}/>
+
                            </TableCell> 
                        <TableCell align="center">{mail.from}</TableCell>
                        <TableCell align="center">{mail.to}</TableCell> 

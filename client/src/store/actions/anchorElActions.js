@@ -4,15 +4,15 @@ const SHOW_ANCHOR = "SHOW_ANCHOR"
 const SHOW_ANCHOR2 = "SHOW_BOXES"
 const HIDE_ANCHOR = "HIDE_ANCHOR"
 const HIDE_ANCHOR2 = "HIDE_ANCHOR2"
-const show_anchor=(event)=>{
-     return {type: SHOW_ANCHOR, payload: event}
+const show_anchor=(event,mail)=>{
+    console.log("SHOW_ANCHORELACTIONS",event)
+     return {type: SHOW_ANCHOR,mail,payload:event}
 }
 
 const show_anchorBoxes=(event)=>{
     return {type:SHOW_ANCHOR2, payload:event}
 }
 const hide_anchor = async(folder,message,id)=>{
-    console.log("FOLDER",id);
     let response = await fetch(`${id}/messages`,{
         method: "PATCH",
         headers:{

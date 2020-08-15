@@ -21,7 +21,6 @@ class App extends React.Component {
 
 
   render(){
-    console.log("APP",this.props)
     return(
       // this.props.app ? <Spinner/> : <TableComponent store={store}  mails={this.props.voiceMails} />
       this.props.app ? <Spinner/> : this.props.voiceMails.length === 0
@@ -35,7 +34,6 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state)=> {
-  console.log("SAA",state)
   return{
     current_box: state.currentVmBox.box,
     app: state.app.isLoading,
@@ -65,8 +63,8 @@ const mapDispatchToProps = (dispatch)=>{
     fetchBoxes: ()=>{
       dispatch(fetch_voice_boxes)
     },
-    show_menu: (event)=>{
-      dispatch(show_anchor(event))
+    show_menu: (event,mail)=>{
+      dispatch(show_anchor(event,mail))
   },show_boxes:(event)=>{
     dispatch(show_anchorBoxes(event))
   },hide_boxes:()=>{

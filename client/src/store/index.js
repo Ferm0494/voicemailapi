@@ -14,14 +14,16 @@ const AllReducers = combineReducers({app: appReducer, voiceMails: voiceMailsRedu
 const InitialStates = {
         currentVmBox: {box: null},
         vmBoxes:[],
-        anchorEl:{anchorEl: null} ,
+        anchorEl:{anchorEl: {
+                id:null
+        } } ,
         anchorEl2:{anchorEl:null},
         app: {isLoading: true},
         voiceMails: []
 }
 
 const store= createStore(AllReducers,InitialStates,compose(
-        applyMiddleware(...middleWare)))
+        applyMiddleware(...middleWare),window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()))
 
 export default store
 
