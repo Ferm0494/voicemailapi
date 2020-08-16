@@ -10,8 +10,7 @@ In the project directory, you can run:	**IN ORDER TO RUN THE PROJECT THE SERVER 
 3) On the Root server install `node server` to run the server.
 4) On Client directory run `npm start` to start the react-app
 
-
-### `yarn start`	## Technologies used:
+## Technologies used:
 1) Material UI
 2) React
 3) Redux
